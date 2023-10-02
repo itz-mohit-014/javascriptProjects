@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+}
+
+h1{
+  font: 600 clamp(2rem, 4vw ,4rem) 'Roboto';
+  text-align: center;
+  color: #ccc;
+  text-decoration: underline double #333;
+  text-underline-offset: 1rem;
+}
+
+
+.drum-container{
+  width: 100%;
+  height: 100%;
+  padding: 2rem ;
+  background: no-repeat url('https://cdn.pixabay.com/index/2023/04/18/04-44-42-402_1440x550.jpg') center / cover;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.transition{
+  transition: 0.06s all ;
+  -webkit-transition: 0.06s all;
+  -moz-transition: 0.06s all;
+  -o-transition: 0.06s all;
+}
+
+.keys-wrapper{
+  height: 80%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.key{
+  flex: 1 0 80px;
+  text-align: center;
+  border: 4px solid rgb(13, 13, 13);
+  padding: 1rem;
+  background-color: rgb(0 0 0 / 0.3);
+}
+
+.key-name, .instrument-name{
+  display: block;
+  text-transform: uppercase;
+  color: #fff;
+  font: 600 clamp(2rem, 5vw , 3rem) 'Roboto';
+}
+.instrument-name{
+  scale: 0.5;
+  color: rgb(255, 200, 0);
+}
+
+.key.play-sound{
+  border-color: rgb(255, 200, 0);
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.key.play-sound .key-name{
+  transform: scale(1.2);
+}
+.key.play-sound > .instrument-name{
+  scale: 0.55;
+}

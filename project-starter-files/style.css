@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+}
+
+h1{
+  position: absolute;
+  top:1rem;
+  font: 600 clamp(2rem, 4vw ,4rem) 'Roboto';
+  text-align: center;
+  color: #ccc;
+  text-decoration: underline double #333;
+  text-underline-offset: 1rem;
+}
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day01 - JavaScript Drup Kit</title>
+
+    <!-- linking stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="drum-container">
+      <h1 class="title">Hit the Keys to Playing Intruments</h1>
+
+      <div class="keys-wrapper">
+        <div class="key transition" data-key="65">
+          <kbd class="key-name transition">A</kbd>
+          <p class="instrument-name transition">clap</p>
+        </div>
+
+        <div class="key transition" data-key="83">
+          <kbd class="key-name transition">S</kbd>
+          <p class="instrument-name transition">hihat</p>
+        </div>
+
+        <div class="key transition" data-key="68">
+          <kbd class="key-name transition">D</kbd>
+          <p class="instrument-name transition">kick</p>
+        </div>
+
+        <div class="key transition" data-key="70">
+          <kbd class="key-name transition">F</kbd>
+          <p class="instrument-name transition">openhat</p>
+        </div>
+
+        <div class="key transition" data-key="71">
+          <kbd class="key-name transition">G</kbd>
+          <p class="instrument-name transition">boom</p>
+        </div>
+
+        <div class="key transition" data-key="72">
+          <kbd class="key-name transition">H</kbd>
+          <p class="instrument-name transition">ride</p>
+        </div>
+
+        <div class="key transition" data-key="74">
+          <kbd class="key-name transition">J</kbd>
+          <p class="instrument-name transition">snare</p>
+        </div>
+
+        <div class="key transition" data-key="75">
+          <kbd class="key-name transition">K</kbd>
+          <p class="instrument-name transition">tom</p>
+        </div>
+
+        <div class="key transition" data-key="76">
+          <kbd class="key-name transition">L</kbd>
+          <p class="instrument-name transition">tink</p>
+        </div>
+      </div>
+
+      <audio src="./sounds/clap.wav" data-key="65"></audio>
+      <audio src="./sounds/hihat.wav" data-key="83"></audio>
+      <audio src="./sounds/kick.wav" data-key="68"></audio>
+      <audio src="./sounds/openhat.wav" data-key="70"></audio>
+      <audio src="./sounds/boom.wav" data-key="71"></audio>
+      <audio src="./sounds/ride.wav" data-key="72"></audio>
+      <audio src="./sounds/snare.wav" data-key="74"></audio>
+      <audio src="./sounds/tom.wav" data-key="75"></audio>
+      <audio src="./sounds/tink.wav" data-key="76"></audio>
+    </section>
+
+    <!-- script file -->
+    <script src="script.js"></script>
+  </body>
+</html>
