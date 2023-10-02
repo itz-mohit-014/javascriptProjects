@@ -5,7 +5,7 @@ figure.forEach(element => {
     element.addEventListener('click', expandCrausel =>{
 
         defaultCrausel();
-        // use current target bcoz click happen on img 
+        // use current target to prevent click effect on img
         expandCrausel.currentTarget.classList.toggle('expand');
     })
 });

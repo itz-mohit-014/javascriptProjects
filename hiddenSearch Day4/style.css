@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.transition{
+  transition:  0.4s ease ;
+  -webkit-transition:  0.4s ease ;
+  -moz-transition:  0.4s ease ;
+  -o-transition:  0.4s ease 
+} 
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+ 
+  background: #c31432;
+  background: -webkit-linear-gradient(to right, #240b36, #c31432);
+  background: linear-gradient(to right, #240b36, #c31432); 
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+h1{
+  font: 600 clamp(2rem, 4vw ,4rem) 'Roboto';
+  text-align: center;
+  color: #ccc;
+  text-decoration: underline double #ccc 2px;
+  text-underline-offset: 1rem;
+  margin-top:1rem ;
+}
+
+.container{
+  width: 100%;
+  max-width: 350px;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-box-wrapper{
+  position: relative;
+  height: 2.5rem;
+  width: 0%;
+  max-width:250px;
+}
+
+.search-box-wrapper.show{
+  width: 100%;
+}
+
+input , button{
+  font-size:1.5rem;
+  color: #666;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  top:0px;
+}
+
+input{
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+}
+
+button{
+  width: 40px;
+  cursor: pointer;
+}
+
