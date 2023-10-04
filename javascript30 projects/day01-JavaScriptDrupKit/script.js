@@ -7,14 +7,14 @@ function playingMusic(e){
     audio.currentTime= 0;
     audio.play();
 
-    setTimeout(()=>{    
-        key.classList.add('play-sound')
-        // key.classList.remove('play-sound')
-    }, 600)
+    key.classList.add('play-sound')
+    // setTimeout(()=>{    
+    //     // key.classList.remove('play-sound')
+    // }, 600)
     setTimeout(()=>{    
         // key.classList.add('play-sound')
         key.classList.remove('play-sound')
-    }, 600)
+    }, 300)
 }
 
 window.addEventListener('keydown', playingMusic);

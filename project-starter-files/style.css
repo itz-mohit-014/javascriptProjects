@@ -19,5 +19,6 @@ h1{
   color: #ccc;
   text-decoration: underline double #333;
   text-underline-offset: 1rem;
+  width: 100%;
 }
 

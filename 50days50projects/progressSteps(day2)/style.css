@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root{
+  --active-step:rgb(15, 174, 192);
+  --panding-step:rgb(182, 184, 185);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+}
+
+h1{
+  position: absolute;
+  top:1rem;
+  font: 600 clamp(2rem, 4vw ,4rem) 'Roboto';
+  text-align: center;
+  color: #ccc;
+  text-decoration: underline double #333;
+  text-underline-offset: 1rem;
+  width: 100%;
+}
+
+.progress-container{
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-steps-wrapper{
+  width: 90%;
+  max-width: 380px;
+  display: flex;
+  justify-content: space-between;
+  align-content:center ;
+  position: relative;
+}
+/* for progress steps line */
+.progress-steps-wrapper::after , .progress-steps-wrapper::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50% 0%);
+  background-color: var(--panding-step);
+  height: 4px;
+  width: 100%;
+  z-index: -1;
+}
+.progress-steps-wrapper::before{
+  z-index: 0;
+  width: 0%;
+  background-color: var(--active-step);
+  transition: all 0.3s ease-in-out;
+  -webkit-transition:all 0.3s ease-in-out ;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.steps{
+  position: relative;
+  z-index: 1;
+  width:2.5rem ;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 4px solid var(--panding-step);
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition:all 0.3s ease-in-out ;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.steps.active{
+  border-color: var(--active-step);
+}
+.steps > span{
+  color: var(--panding-step);
+  font: 400 clamp(1rem , 4vw, 1.5rem) 'Roboto';
+  transition: all 0.3s ease-in-out;
+  -webkit-transition:all 0.3s ease-in-out ;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.steps.active > span{
+  color: var(--active-step);
+}
+
+button{
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  margin-left: 1rem;
+  border:none;
+  outline: none;
+  background-color: var(--active-step);
+  color: #fff;
+  font: 400 clamp(0.8rem , 4vw, 1.1rem) 'Roboto';
+  transition: all 0.3s ease-in-out;
+  -webkit-transition:all 0.3s ease-in-out ;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+button:disabled{
+  background-color: var(--panding-step);
+  border-color:transparent ;
+}
