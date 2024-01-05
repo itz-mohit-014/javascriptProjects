@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root{
+  /* Main Variables */
+  --spacing:10px;
+  --bg-color:#c89c0e;
+  --aspect-ratio:1 / 1;
+  --blur:0px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #193549;
+  color: #fff;
+}
+
+h1{
+  font: 600 clamp(2rem, 5vw ,4rem) 'Roboto';
+  text-align: center;
+  margin:3rem 0px;
+}
+
+h1 .change-color{
+  color: var(--bg-color);
+}
+
+.container, .controls{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+
+.controls{
+  flex-direction: row;
+  flex-wrap:wrap ;
+  padding:1rem ;
+}
+
+.changing-input-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.changing-input-box label{
+  letter-spacing: 1px;
+  font: 600 clamp(0.8rem, 4vw , 3rem) 'Roboto';
+}
+
+.changing-input-box input[type='range']{
+  accent-color: var(--bg-color);
+  cursor: pointer;
+}
+.changing-input-box select{
+  background-color: #d4d4d4;
+  padding: 0.2rem;
+  border: 2px solid var(--bg-color);
+}
+
+.img-wrapper{
+  filter: blur(var(--blur));
+  background-color: var(--bg-color);
+  padding: var(--spacing);
+}
+
+.img-wrapper > img{
+  width: 100%;
+  max-width: 600px;
+  object-fit: cover;
+  aspect-ratio: var(--aspect-ratio);
+}
+

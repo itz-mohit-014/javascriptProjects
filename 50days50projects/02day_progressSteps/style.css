@@ -35,12 +35,15 @@ h1{
 }
 
 .center{
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .progress-steps-wrapper{
+  /* create a variable to change the width of its pseudo element */
+  --active-steps-width:0%; 
   width: 90%;
   max-width: 380px;
   display: flex;
@@ -61,7 +64,7 @@ h1{
 }
 .progress-steps-wrapper::before{
   z-index: 0;
-  width: 0%;
+  width: var(--active-steps-width);
   background-color: var(--active-step);
   transition: all 0.3s ease-in-out;
   -webkit-transition:all 0.3s ease-in-out ;
@@ -107,6 +110,7 @@ button{
   background-color: var(--active-step);
   color: #fff;
   font: 400 clamp(0.8rem , 4vw, 1.1rem) 'Roboto';
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
   -webkit-transition:all 0.3s ease-in-out ;
   -moz-transition: all 0.3s ease-in-out;
@@ -116,4 +120,9 @@ button{
 button:disabled{
   background-color: var(--panding-step);
   border-color:transparent ;
+  cursor: not-allowed;
+}
+
+button:active{
+  scale: 0.95;
 }

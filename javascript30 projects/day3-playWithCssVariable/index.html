@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project</title>
+    <!-- linking stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Update Css Variable with <span class="change-color">JS</span></h1>
+
+    <div class="container">
+      <div class="controls">
+        <div class="changing-input-box">
+          <label for="background">Base Color:</label>
+          <input type="color" name="bg-color" id="background" value="#c89c0e" />
+        </div>
+        <div class="changing-input-box">
+          <label for="spacing">Spacing:</label>
+          <input
+            type="range"
+            id="spacing"
+            min="0"
+            max="50"
+            value="10"
+            name="spacing"
+            data-value-unit="px"
+          />
+        </div>
+        <div class="changing-input-box">
+          <label for="blur">Blur:</label>
+          <input
+            type="range"
+            name="blur"
+            id="blur"
+            min="0"
+            max="20"
+            value="0"
+            data-value-unit="px"
+          />
+        </div>
+
+        <div class="changing-input-box">
+          <label for="aspect-ratio">Ratio</label>
+          <select name="image-ratio" id="aspect-ratio">
+            <option value="9 / 16">Landscape ( 9 / 16)</option>
+            <option value="16 / 9">Portrait ( 16 / 9)</option>
+            <option value="1 / 1" selected>Square( 1 / 1)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="img-wrapper">
+        <img
+          src="https://images.pexels.com/photos/12562656/pexels-photo-12562656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          alt="The Image of the Iland with fresh air"
+        />
+      </div>
+    </div>
+    <!-- script file -->
+    <script src="script.js"></script>
+  </body>
+</html>

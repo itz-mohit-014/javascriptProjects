@@ -8,17 +8,10 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  height: 100vh;
 }
 
 h1{
-  position: absolute;
-  top:1rem;
   font: 600 clamp(2rem, 4vw ,4rem) 'Roboto';
   text-align: center;
-  color: #ccc;
-  text-decoration: underline double #333;
-  text-underline-offset: 1rem;
-  width: 100%;
 }
 

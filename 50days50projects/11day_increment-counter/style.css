@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  color: #fff;
+}
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(139, 56, 164);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-networks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 920px;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.social-group {
+  min-width: 260px;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+.social-icon i {
+  font-size: 3.4rem;
+}
+
+.counter {
+  font: 400 clamp(3rem, 5vw, 3.4rem) cursive, sans-serif;
+  margin: 1rem 0px 0.5rem;
+  letter-spacing: 2px;
+}
+
+.social-title {
+  font: 400 clamp(0.9rem, 3vw, 1rem) cursive, sans-serif;
+  letter-spacing: 2px;
+}

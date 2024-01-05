@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: steelblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform-style: preserve-3d;
+  /* perspective: 200px; */
+}
+
+.login-card {
+  min-height: 420px;
+  min-width: 340px;
+  padding: 2rem;
+  background-color: rgb(0 0 0 / 0.3);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font: 600 clamp(2rem, 3vw, 2.6rem) / 4rem sans-serif;
+  color: #fff;
+}
+
+.input-details {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  border-bottom: 3px solid #fff;
+}
+
+.input-details input {
+  height: 100%;
+  width: 100%;
+  padding: 0.6rem 0px;
+  font: 500 1.2rem sans-serif;
+  color: #dbdbdb;
+  background-color: transparent;
+  border: none;
+}
+
+.input-details input:focus {
+  outline: none;
+}
+
+.input-details label {
+  position: absolute;
+  bottom: 8px;
+  left: 0px;
+}
+
+.input-details label .wave-text {
+  position: relative;
+  bottom: 0px;
+  left: 0px;
+  font: 500 1.2rem sans-serif;
+  transition: all 0.15s var(--transition-delay) ease;
+  color: #fff;
+}
+
+.input-details input:focus ~ label .wave-text,
+.input-details input:valid ~ label .wave-text {
+  bottom: 35px;
+  left: 0px;
+  color: rgb(165, 215, 255);
+  font-size: 1rem;
+}
+
+.login-btn {
+  width: 100%;
+}
+.login-btn button {
+  width: 100%;
+  background-color: rgb(173, 218, 255);
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font: 500 1rem sans-serif;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+
+.login-btn button:hover {
+  box-shadow: 0px 4px 8px #00000049;
+  background-color: rgb(212, 236, 255);
+}
+.login-btn button:active {
+  scale: 0.95;
+}
+.login-btn button:focus-visible {
+  border: 1px solid #00000049;
+}
+
+.for-register {
+  align-self: flex-start;
+  font: 500 1rem sans-serif;
+  color: #fff;
+}
+
+.for-register a {
+  text-decoration: none;
+  color: rgb(153, 209, 255);
+}
+
+.login-card {
+  position: absolute;
+  transition: all 0.3s ease-in;
+  /* transform: rotateY(90deg); */
+}
+.card2 {
+  transform: rotateY(90deg);
+}

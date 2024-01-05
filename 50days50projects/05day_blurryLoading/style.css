@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blur: 50px;
+}
+
+body {
+  position: relative;
+}
+
+.cover-page {
+  height: 100vh;
+  width: 100vw;
+  background: no-repeat
+    url("https://images.unsplash.com/photo-1455894127589-22f75500213a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=800&ixid=MnwxfDB8MXxyYW5kb218MHx8bGFwdG9wfHx8fHx8MTcwMTQ1MzUyMQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1200")
+    center / cover;
+  filter: blur(var(--blur));
+}
+
+.loading-percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  font: 400 clamp(3rem, 4vw, 4rem) "Roboto";
+  text-align: center;
+  color: rgb(180, 117, 0);
+}

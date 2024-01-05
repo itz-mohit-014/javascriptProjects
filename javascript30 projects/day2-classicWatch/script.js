@@ -17,7 +17,7 @@ function currentTime(){
 
 // for hours
     const currentHours = date.getHours();
-    const hourDeg = (currentHours / 12) * 360;
+    const hourDeg = (currentHours / 24) * 360;
     hours.style.transform= `rotate(${hourDeg}deg)`
 }
 
