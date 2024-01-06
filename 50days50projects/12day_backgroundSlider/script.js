@@ -18,6 +18,8 @@ function changeSlide() {
   styleSheet.insertRule(dynamicChangeBg, styleSheet.cssRules.length);
 }
 
+changeSlide();
+
 function prevSlide() {
   activeSlide--;
   if (activeSlide < 0) {
