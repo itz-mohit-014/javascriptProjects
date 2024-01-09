@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #0f0f0f;
+}
+
+h1 {
+  position: absolute;
+  top: 20px;
+
+  font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
+  text-align: center;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: rgba(0, 0, 255, 0.459);
+}
+
+.title,
+.input-box,
+.choices-container {
+  width: 100%;
+  max-width: 680px;
+  color: #000;
+  font: 500 clamp(1.2rem, 5vw, 1.8rem) sans-serif;
+}
+
+.input-box textarea {
+  width: 100%;
+  padding: 1rem;
+  font: 500 1.2rem sans-serif;
+  outline: none;
+  max-height: 150px;
+  resize: none;
+}
+
+.choices-container {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.choice {
+  background-color: rgba(0, 0, 255, 0.57);
+  max-width: fit-content;
+  padding: 0.6rem 1rem;
+  border-radius: 5rem;
+  color: #fff;
+  font: 400 1.2rem sans-serif;
+  transition: 0.1s ease;
+  -webkit-transition: 0.1s ease;
+  -moz-transition: 0.1s ease;
+  -o-transition: 0.1s ease;
+}
+
+.choice.highlight {
+  background-color: #fff;
+  color: rgba(0, 0, 255, 0.57);
+}

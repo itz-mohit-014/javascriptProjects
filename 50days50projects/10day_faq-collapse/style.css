@@ -7,7 +7,7 @@
 .faq-section {
   width: 100vw;
   min-height: 100vh;
-  background: rgb(231, 162, 1);
+  background: #fff;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -25,24 +25,25 @@
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
-  width: 70%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 750px;
   height: fit-content;
 }
 
 .faq-wrapper {
   flex: 1;
-  padding: 1rem;
-  border-radius: 10px;
+  border-radius: 4px;
   width: 100%;
-  background-color: red;
+  background-color: rgba(0, 4, 117, 0.738);
   height: fit-content;
+  overflow: hidden;
   transition: all 0.5s ease;
-  box-shadow: 0px 5px 16px #26262695;
+  box-shadow: 0px 5px 20px #ffffff70;
+  position: relative;
 }
 
 .questions-box {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -51,14 +52,15 @@
 }
 
 .questions,
-.answers {
-  color: #000;
+.answers,
+.icon {
+  color: #e9e9e9;
   font: 600 clamp(1rem, 3vw, 1.5rem) sans-serif;
 }
 
 .icon {
   font-size: 2rem;
-  rotate: 180deg;
+  rotate: -180deg;
   transition: all 0.5s ease;
 }
 
@@ -67,18 +69,13 @@
 }
 
 .answers {
-  scale: 1 0;
-  height: 0px;
   font-weight: 400;
-  transform: translateY(-5px);
-  transform-origin: 50%;
-  margin-left: 0.6rem;
-  transition: all 0.5s ease;
+  height: 0px;
+  transition: 0.5s ease;
+  padding: 0px 1rem;
 }
 
 .faq-wrapper.open .answers {
-  padding-top: 1rem;
-  transform: translateY(0px);
   height: fit-content;
-  scale: 1;
+  padding: 1rem;
 }

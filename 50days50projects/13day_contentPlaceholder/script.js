@@ -25,4 +25,4 @@ function loadData() {
   });
 }
 
-setTimeout(loadData, 1500);
+setTimeout(loadData, 2500);

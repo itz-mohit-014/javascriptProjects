@@ -71,6 +71,7 @@ body {
   font: 500 1.2rem sans-serif;
   transition: all 0.15s var(--transition-delay) ease;
   color: #fff;
+  pointer-events: none;
 }
 
 .input-details input:focus ~ label .wave-text,
