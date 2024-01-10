@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawing App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="center">
+    <h1>Drawing App</h1>
+    <section class="main-container center">
+      <div class="drawing-wrapper">
+        <canvas id="canvas" width="800" height="700"></canvas>
+        <div class="bottom-drawing-controler center" id="controler">
+          <button class="increase center" id="decrease">-</button>
+          <span id="size" class="center">10</span>
+          <button class="decrease center" id="increase">+</button>
+          <input type="color" id="color" class="center" />
+          <button class="reset-drawing center" id="clear">X</button>
+        </div>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
