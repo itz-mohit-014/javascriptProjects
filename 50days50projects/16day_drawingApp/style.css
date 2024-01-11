@@ -7,22 +7,17 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
   color: #000;
-  flex-direction: column;
-  height: 100vh;
   background-color: #d4d4d4;
+  padding: 1rem;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
 }
 
 h1 {
-  margin: 8px 0px;
   text-align: center;
   font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
-}
-
-.main-container {
-  height: 100vh;
-  width: 100vw;
 }
 
 .center {
@@ -31,16 +26,25 @@ h1 {
   justify-content: center;
 }
 
-canvas {
+.main-container {
+  width: 100%;
+  max-width: 800px;
+  min-width: 320px;
+  height: calc(100% - 40px);
+  flex-direction: column;
+  margin: 0px auto;
   border: 4px solid #000;
   border-radius: 10px 10px 0px 0px;
+  overflow: hidden;
+}
+
+canvas {
   background-color: #fff;
 }
 
 .bottom-drawing-controler {
   width: 100%;
-  border: 4px solid #000;
-  border-top: none;
+  border-top: 4px solid #000;
   background-color: #f00;
   justify-content: flex-start;
   gap: 0.5rem;
@@ -65,4 +69,14 @@ input {
 span:active,
 input:active {
   scale: 0.95;
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    height: 80vh;
+  }
+
+  .main-container {
+    height: 100%;
+  }
 }
