@@ -12,10 +12,6 @@ body {
 }
 
 h1 {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  translate: -50% 0%;
   font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
   text-align: center;
 }
