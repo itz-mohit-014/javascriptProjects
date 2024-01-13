@@ -8,21 +8,24 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  position: relative;
   height: 100vh;
   width: 100vw;
   color: #fff;
 }
 
-.container {
-  height: 100%;
-  width: 100%;
+.center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container {
+  min-height: 100%;
+  width: 100%;
   flex-direction: column;
   gap: 2rem;
   background-color: rgb(27, 9, 118);
+  padding: 2rem 1.25rem;
 }
 
 input {
@@ -47,23 +50,22 @@ input::placeholder {
 
 .profile-card {
   height: auto;
-  display: flex;
-  gap: 2rem;
+  font: 600 clamp(1.75rem, 5vw, 2.25rem) "Roboto", sans-serif;
+  gap: 1.75rem;
   background-color: rgb(81, 2, 156);
   border-radius: 1rem;
-  min-width: 420px;
-  width: 100%;
-  max-width: 820px;
+  width: 80%;
+  max-width: 800px;
 }
 
 .profile-card.show {
-  padding: 3rem;
+  padding: 2rem;
+  min-height: 200px;
 }
 
 .left {
   width: 30%;
-  display: flex;
-  justify-content: center;
+  align-self: flex-start;
 }
 
 .left img {
@@ -76,20 +78,25 @@ input::placeholder {
 .right {
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  align-self: flex-start;
 }
 
 h1 {
   font: 600 2rem "Roboto";
   letter-spacing: 2px;
+  border-left: 3px solid #0f0;
+  padding-left: 10px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .user-about {
+  margin-top: 1rem;
   font: 400 1rem / 1.4rem "Roboto";
   letter-spacing: 2px;
-  color: #eee;
 }
 
 .tags-container,
@@ -97,16 +104,17 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  margin-top: 1rem;
 }
 
 .follower-container {
   justify-content: flex-start;
-  align-items: stretch;
-  margin: 6px 0px;
+  gap: 8px;
 }
 
 .follower-container p {
   flex: 1;
+  font: 400 1rem "Roboto", sans-serif;
 }
 .follower-container p strong {
   margin-left: 4px;
@@ -118,4 +126,20 @@ h1 {
   font-size: 0.65rem;
   letter-spacing: 1px;
   border-radius: 6px;
+  margin-bottom: 4px;
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 767px) {
+  .profile-card {
+    flex-wrap: wrap;
+    min-width: 220px;
+    width: 100%;
+  }
+  .profile-card.show {
+    padding: 1.5rem;
+  }
+  .follower-container p {
+    font-size: 0.8rem;
+  }
 }
