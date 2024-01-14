@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background: rgb(168, 101, 0);
+  color: #fff;
+  padding: 1.5rem;
+  overflow-x: hidden;
+}
+
+.transition {
+  transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10%;
+  width: 100%;
+}
+
+h1 {
+  font: italic 600 clamp(2rem, 4vw, 3rem) "Roboto";
+  text-align: center;
+  text-decoration: wavy;
+  text-decoration-skip: 10px;
+  text-decoration-thickness: 10px;
+}
+
+.right-add-notes-btn {
+  border: 1px solid #fff;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  background-color: #fff;
+  color: rgb(168, 101, 0);
+  box-shadow: 0px 0px 20px #000000aa;
+}
+
+i {
+  margin-right: 0.5rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.right-add-notes-btn:active {
+  scale: 0.95;
+}
+
+.notes-section {
+  height: auto;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem 0px;
+  margin-top: 1.25rem;
+}
+
+.notes {
+  width: 300px;
+  min-height: 400px;
+  height: auto;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  transform: scale(0);
+}
+.notes.show {
+  transform: scale(1);
+}
+
+.notes-header {
+  background-color: dodgerblue;
+  height: 50px;
+  padding: 0px 0.5rem;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+.notes-header i {
+  padding: 0.6rem;
+  margin: 0px;
+}
+.notes-header i:active {
+  scale: 0.95;
+}
+.save-note {
+  color: #fff;
+}
+.edit-note {
+  color: #3cff00;
+  margin-right: 10px !important;
+}
+.remove-note {
+  color: #db0c0c;
+}
+
+.notes-body {
+  flex: 1;
+  background-color: black;
+  height: 100%;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+textarea,
+.notes-body h2,
+.notes-body p {
+  font: 400 1rem "Roboto", sans-serif;
+  color: #000;
+  background-color: #fff;
+  resize: none;
+  height: fit-content;
+  padding: 0.5rem 0.8rem;
+  outline: none;
+  border: none;
+}
+textarea:nth-child(1),
+.notes-body h2 {
+  border-bottom: 1px solid #000;
+  height: 50px;
+  font: 600 1.5rem "Roboto", sans-serif;
+}
+
+textarea:nth-child(2),
+.notes-body p {
+  flex: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .notes {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .notes-section {
+    justify-content: center;
+  }
+  .notes {
+    width: 48%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .notes {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .notes {
+    width: 23.5%;
+    max-width: 350px;
+  }
+}
