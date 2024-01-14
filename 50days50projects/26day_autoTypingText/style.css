@@ -14,9 +14,30 @@ body {
 
 h1 {
   font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
+
   text-align: center;
+  position: relative;
 }
 
+h1::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  height: 100%;
+  width: 4px;
+  background-color: #fff;
+  animation: cursorBlinking 0.2s ease-in-out infinite alternate;
+}
+
+@keyframes cursorBlinking {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .container {
   width: 100vw;
   min-height: 100vh;
@@ -44,7 +65,4 @@ input {
   outline: none;
   background-color: transparent;
   font-size: 1.2rem;
-}
-input {
-  background-color: blue;
 }
