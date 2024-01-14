@@ -8,10 +8,56 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  position: relative;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  gap: 1rem;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 1.75rem;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-heading {
+  text-align: center;
 }
 
 h1 {
   font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
-  text-align: center;
+  margin-bottom: 0.6rem;
+}
+
+i {
+  height: 30px;
+  width: 30px;
+  color: #ff0000b4;
+}
+
+.picture {
+  margin-top: 1rem;
+  height: 460px;
+  width: 320px;
+  box-shadow: 0px 4px 40px #424040;
+  background: no-repeat
+    url("https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8c3BvcnRzLWNhcnx8fHx8fDE3MDUxNzkwMDc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080")
+    center / cover;
+  position: relative;
+}
+
+.like-icon {
+  position: absolute;
+  font-size: 3rem;
+  transform: translate(-50%, -50%) scale(0);
+  animation: like 1s ease infinite;
+}
+
+@keyframes like {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
 }
