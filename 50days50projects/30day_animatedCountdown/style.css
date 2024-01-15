@@ -10,52 +10,32 @@ body {
   height: 100vh;
   width: 100vw;
 }
-
 .center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.container {
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.countdown {
+.transition {
   transition: 0.3s ease;
   -webkit-transition: 0.3s ease;
   -moz-transition: 0.3s ease;
   -o-transition: 0.3s ease;
+}
+.container {
+  scale: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+.hide {
+  display: none;
+}
+.countdown {
   transform-origin: bottom;
   color: #00cae0;
-  /* padding: 0.5rem; */
   opacity: 0;
   transform: translate(0px) rotate(-130deg);
   font: 400 3.4rem "Roboto", sans-serif;
-  animation: rotateCount 1s linear infinite;
-}
-
-@keyframes rotateCount {
-  0% {
-    opacity: 1;
-    transform: translate(0px) rotate(130deg);
-  }
-  30% {
-    transform: translate(0px) rotate(-20deg);
-  }
-  40% {
-    transform: translate(0px) rotate(0deg);
-  }
-  50% {
-    transform: translate(0px) rotate(0deg);
-  }
-  60% {
-    transform: translate(0px) rotate(20deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0px) rotate(-130deg);
-  }
+  animation: rotateCount 1200ms linear infinite;
 }
 
 h2 {
@@ -64,4 +44,74 @@ h2 {
   font: 600 clamp(2rem, 4vw, 4rem) "Roboto";
   text-transform: capitalize;
   background-color: #fff;
+}
+.final {
+  animation: popup 0.3s ease-in-out 1;
+}
+.final h2 {
+  line-height: 4rem;
+}
+.btn {
+  background-color: #00cae0;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-transform: capitalize;
+  position: relative;
+}
+.btn::after {
+  content: "\00bb";
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translate(0%, -50%);
+  color: #fff;
+  transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
+}
+.btn:hover {
+  padding-right: 1.8rem;
+}
+.btn:hover::after {
+  right: 10px;
+}
+.btn:active {
+  scale: 0.95;
+}
+
+@keyframes rotateCount {
+  0% {
+    opacity: 1;
+    transform: translate(0px) rotate(130deg);
+  }
+  15% {
+    transform: translate(0px) rotate(-30deg);
+  }
+  25%,
+  75% {
+    transform: translate(0px) rotate(0deg);
+  }
+  85% {
+    transform: translate(0px) rotate(30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px) rotate(-130deg);
+  }
+}
+
+@keyframes popup {
+  0% {
+    scale: 0;
+  }
+  50% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
 }
