@@ -2,10 +2,9 @@ const addNotesBtn = document.getElementById("addNote");
 const noteSection = document.querySelector(".notes-section");
 const localStorageData = [];
 
+//  need work on store data at browser localstorge.
 const fetchLocallyStoredData = localStorage.getItem("notes");
-
 console.log(fetchLocallyStoredData);
-
 function updateDataToLocalStorage(e) {
   const elName = e.target.dataset.value;
   const text = e.target.value;
@@ -23,10 +22,12 @@ function updateDataToLocalStorage(e) {
 }
 
 function inputNoteEvent() {
-  const allTextarea = document.querySelectorAll("textarea");
-  allTextarea.forEach((textarea) => {
-    textarea.addEventListener("input", updateDataToLocalStorage);
-  });
+  const noteBody = Array.from(document.getElementsByClassName("notes-body"));
+  noteBody[0].addEventListener("input", updateDataToLocalStorage);
+  // const allTextarea = document.querySelectorAll("textarea");
+  // allTextarea.forEach((textarea) => {
+  //   textarea.addEventListener("input", updateDataToLocalStorage);
+  // });
 }
 
 function notePerformAction(e) {
@@ -126,7 +127,5 @@ function addNewNote() {
   attachEventsOnNote();
   inputNoteEvent();
 }
-
-addNewNote();
 
 addNotesBtn.addEventListener("click", addNewNote);
