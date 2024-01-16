@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.transition {
+  transition: 0.25s linear;
+  -webkit-transition: 0.25s linear;
+  -moz-transition: 0.25s linear;
+  -o-transition: 0.25s linear;
+}
+
+.boxes-container {
+  height: clamp(300px, 100%, 800px);
+  width: clamp(300px, 100%, 800px);
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.boxes-container.remove-gap {
+  gap: 0px;
+  padding: 3rem;
+}
+
+.box {
+  width: clamp(90px, 22%, 150px);
+  height: clamp(90px, 22%, 150px);
+  position: relative;
+  background-image: url(https://media.giphy.com/media/ZqlvCTNHpqrio/giphy.gif);
+  background-size: 600px 600px;
+  background-position: var(--background-position);
+  transform: rotate(0deg);
+  transition-duration: 0.6s;
+}
+
+.box.closest {
+  transform: rotate(360deg);
+}
+
+.box::after,
+.box::before {
+  content: "";
+  position: absolute;
+  right: -15px;
+  top: 0px;
+  height: 100%;
+  width: 15px;
+  background-color: orange;
+  transform: translate(0px, 8px) skewY(45deg);
+}
+
+.box::before {
+  left: 0px;
+  bottom: -15px;
+  top: auto;
+  right: auto;
+  height: 15px;
+  width: 100%;
+  transform: translate(8px, 0px) skewX(45deg);
+}
+
+button {
+  position: relative;
+  z-index: 2;
+  background-color: orange;
+  height: 60px;
+  width: 130px;
+  font-size: 1.2rem;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  box-shadow: 5px 5px 5px 0px rgb(0, 0, 0);
+  transition: 0.25s linear;
+  -webkit-transition: 0.25s linear;
+  -moz-transition: 0.25s linear;
+  -o-transition: 0.25s linear;
+}
+button:active {
+  box-shadow: none;
+  transform: translate(0px, 5px);
+}
+
+@media screen and (max-width: 660px) {
+  .box {
+    width: clamp(90px, 28%, 150px);
+    height: clamp(90px, 28%, 150px);
+    background-position: 500px 500px;
+  }
+}
