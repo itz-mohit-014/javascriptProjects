@@ -1,5 +1,4 @@
 const inputSearchEl = document.getElementById("userFilterInput");
-
 getUserData();
 async function getUserData() {
   const randomUserApiRes = await fetch("https://randomuser.me/api?results=80");
@@ -28,14 +27,35 @@ function addDataToProfiles(allUser) {
   });
 }
 
-function filterUser(text) {
-  const allUserEntries = Array.from(
-    document.getElementsByClassName("right user-details")
-  );
-  allUserEntries.forEach((userEntry, idx) => {
-    // if (text == userEntry.innerText )
-    // console.log(userEntry.innerText);
+function filterUser(e) {
+  const text = e.target.value.toLowerCase();
+  let allUser = Array.from(document.getElementsByClassName("user"));
+  let userDetails = [];
+  allUser.forEach((user) => {
+    userDetails.push(user.innerText.split("\n\n").join().toLowerCase());
   });
+
+  console.log(userDetails);
+
+  allUser.forEach((user) => {
+    user.classList.remove("sorted");
+  });
+  userDetails.forEach((detail, idx) => {
+    if (detail.includes(text)) {
+      allUser[idx].classList.add("sorted");
+    }
+  });
+
+  setTimeout(() => {
+    allUser.forEach((user) => {
+      if (user.classList.contains("sorted")) {
+        user.style.display = "flex";
+        console.log(user);
+      } else {
+        user.style.display = "none";
+      }
+    });
+  }, 100);
 }
 
 inputSearchEl.addEventListener("input", filterUser);

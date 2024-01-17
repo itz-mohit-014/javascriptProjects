@@ -36,10 +36,9 @@ body {
 }
 
 .mobile {
-  min-width: 300px;
-  max-width: 360px;
-  min-height: 500px;
-  max-height: 650px;
+  width: clamp(300px, 100%, 360px);
+  height: clamp(500px, 100%, 650px);
+  overflow: hidden;
   border: 1px solid #000;
   border-radius: 8px;
   display: flex;
@@ -111,10 +110,19 @@ body {
   overflow: hidden;
   background: green;
 }
+
+.left-user-profile:hover img {
+  scale: 1.15;
+}
+
 .left-user-profile img {
   width: 100%;
   object-fit: cover;
   object-position: center;
+  transition: 0.25s ease;
+  -moz-transition: 0.25s ease;
+  -webkit-transition: 0.25s ease;
+  -o-transition: 0.25s ease;
 }
 
 .user-details {
