@@ -35,15 +35,12 @@ function filterUser(e) {
     userDetails.push(user.innerText.split("\n\n").join().toLowerCase());
   });
 
-  console.log(userDetails);
-
   allUser.forEach((user) => {
     user.classList.remove("sorted");
   });
-  userDetails.forEach((detail, idx) => {
-    if (detail.includes(text)) {
-      allUser[idx].classList.add("sorted");
-    }
+
+  userDetails.filter((detail, idx) => {
+    return detail.includes(text) ? allUser[idx].classList.add("sorted") : null;
   });
 
   setTimeout(() => {
