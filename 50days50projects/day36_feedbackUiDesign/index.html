@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Feedback</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container center">
+      <div class="card feedback center">
+        <h2 class="card-title">
+          How satisfied are you with our customer support performance?
+        </h2>
+        <div class="card-select-option center">
+          <div class="options center">
+            <img
+              src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-17.png"
+              alt="Emoji"
+            />
+            <span class="option-name">Unhappy</span>
+          </div>
+          <div class="options center">
+            <img
+              src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-3.png"
+              alt="sad emoji"
+            />
+            <span class="option-name">Sad</span>
+          </div>
+          <div class="options center active">
+            <img
+              src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-30.png"
+              alt="Happy Emoji"
+            />
+            <span class="option-name">Satisfied</span>
+          </div>
+        </div>
+        <button type="submit" id="submit-review">Send Review</button>
+      </div>
+
+      <div class="card result center hide">
+        <div class="options center">
+          <img src="./heart-solid.svg" alt="Emoji" />
+          <span class="option-name">Thank You!</span>
+        </div>
+        <div id="show-result"></div>
+        <h2 class="card-title">
+          We'll use your feedback to improve our customer support
+        </h2>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
