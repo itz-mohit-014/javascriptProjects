@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  color: #3a3a3a;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transition {
+  transition: 0.25s linear;
+  -webkit-transition: 0.25s linear;
+  -moz-transition: 0.25s linear;
+  -o-transition: 0.25s linear;
+}
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(179, 179, 179);
+}
+.card {
+  width: clamp(260px, 100%, 600px);
+  height: clamp(100px, 100%, 450px);
+  background-color: #fff;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0px 4px 20px #00000056;
+}
+.top {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0rem 4rem;
+  gap: 3rem;
+  justify-content: center;
+}
+
+h1 {
+  font: 600 clamp(1.4rem, 1.6rem, 1.8rem) "Roboto";
+  text-align: center;
+  align-self: center;
+  margin-top: 1rem;
+  color: #00a6ff;
+}
+.options {
+  margin-bottom: 1.1rem;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+input {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+  accent-color: #8f44ad;
+  display: inline-block;
+  cursor: pointer;
+}
+
+label {
+  font: 400 1.2rem "Roboto";
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+button {
+  background-color: #8f44ad;
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 70px;
+  font: 400 1.1rem "Roboot", sans-serif;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:disabled,
+button:hover {
+  background-color: #590f76;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

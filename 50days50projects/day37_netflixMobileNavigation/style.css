@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+img {
+  width: 100%;
+}
+figcaption,
+a {
+  font: 400 1rem "Roboto";
+  text-align: center;
+}
+
+/*  ********sidebar style******** */
+.sidebar-wrapper,
+aside {
+  position: absolute;
+  top: 0px;
+  left: -100%;
+  transition: 0.3s var(--transition-delay) linear;
+  -webkit-transition: 0.3s var(--transition-delay) linear;
+  -moz-transition: 0.3s var(--transition-delay) linear;
+  -o-transition: 0.3s var(--transition-delay) linear;
+  height: 100%;
+}
+.red {
+  width: calc(100%);
+  max-width: 440px;
+  background-color: #ff0000;
+  --transition-delay: 400ms;
+}
+.black {
+  --transition-delay: 200ms;
+  background-color: #000000;
+  width: calc(100% - 20px);
+}
+aside {
+  --transition-delay: 0ms;
+  background-color: #fff;
+  padding: 2.5rem;
+  width: calc(100% - 20px);
+}
+
+.red.active {
+  left: 0px;
+  --transition-delay: 0ms;
+}
+.red.active .black,
+.red.active aside {
+  left: 0px;
+}
+aside.active {
+  --transition-delay: 400ms;
+}
+
+.hambergur-menu {
+  position: fixed;
+  top: 1rem;
+  left: 20px;
+  height: 35px;
+  width: 35px;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.red.active .hambergur-menu {
+  position: absolute;
+  top: 2rem;
+  left: calc(100% - 50px);
+  z-index: 2;
+}
+
+.hambergur-menu .line {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 10px;
+  position: relative;
+  transition: 0.5s ease;
+}
+
+.hambergur-menu .line::after,
+.hambergur-menu .line::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #000000;
+  transition: 0.5s ease;
+  transform: rotate(0deg);
+  opacity: 1;
+}
+
+.hambergur-menu .line::after {
+  transform: rotate(0deg);
+  top: 10px;
+}
+
+.hambergur-menu.active .line {
+  transform: rotate(135deg);
+}
+.hambergur-menu.active .line::before {
+  opacity: 0;
+  top: 0px;
+}
+.hambergur-menu.active .line::after {
+  top: 0px;
+  transform: rotate(85deg);
+}
+
+aside .logo {
+  height: fit-content;
+}
+
+ul li {
+  list-style: none;
+  padding: 0.75rem 0px;
+}
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.85rem;
+}
+
+ul > ul {
+  margin-left: 1rem;
+}

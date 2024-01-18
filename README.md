@@ -39,6 +39,8 @@ Welcome to my Web Development Projects Repository! Here, I am mastering HTML, CS
 33. [Verify Account UI | OTP Dialogue Box](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day34_otpDialogeBox)
 34. [Live User Filter](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day35_liveUserFilter)
 35. [Feedback UI](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day36_feedbackUiDesign)
+36. [Netflix Mobile Navigation](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day37_netflixMobileNavigation)
+37. [Quiz App](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day38_quizApp)
 
 Feel free to explore the live projects to see how they look after completion. Hope you find this repository helpful!
 
