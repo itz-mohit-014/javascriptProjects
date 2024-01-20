@@ -42,6 +42,8 @@ Welcome to my Web Development Projects Repository! Here, I am mastering HTML, CS
 36. [Netflix Mobile Navigation](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day37_netflixMobileNavigation)
 37. [Quiz App](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day38_quizApp)
 38. [Random Image Gallary](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day39_randomImageShowing)
+39. [Testimonial Box Switcher](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day40_testimonialBoxSwitcher)
+40. [To-Do App](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day41_todoListApp)
 
 Feel free to explore the live projects to see how they look after completion. Hope you find this repository helpful!
 
