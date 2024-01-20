@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  width: 100vw;
+}
 .btn-container {
   display: flex;
   align-items: center;
@@ -39,8 +44,8 @@ button:active {
 }
 
 .container {
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
   padding: 1rem;
   max-width: 1200px;
   margin: 1rem auto;
@@ -61,6 +66,8 @@ button:active {
   border-radius: 0.4rem;
   overflow: hidden;
   margin: 0px auto;
+  cursor: pointer;
+  box-shadow: 0px 10px 20px #3635354b;
 }
 
 .loading {
@@ -74,6 +81,20 @@ button:active {
   background-size: 200%;
   animation: bacgroundLoading 1s linear infinite;
 }
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: 0.25s linear;
+  -webkit-transition: 0.25s linear;
+  -moz-transition: 0.25s linear;
+  -o-transition: 0.25s linear;
+}
+
+.image-wrapper:hover img {
+  scale: 1.2;
+}
 
 @keyframes bacgroundLoading {
   0% {
@@ -83,20 +104,10 @@ button:active {
     background-position: -150%;
   }
 }
-.image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 @media screen and (width <= 991px) {
   .container {
     gap: 1.2rem;
     grid-template-columns: repeat(2, 1fr);
-  }
-  .image-wrapper {
-    aspect-ratio: 3 / 4;
   }
 }
 @media screen and (width <= 600px) {

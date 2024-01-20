@@ -22,6 +22,7 @@ async function addImg(imgWrapper) {
   img.alt = "Random Image from Unsplesh";
 
   imgWrapper.appendChild(img);
+  imgWrapper.classList.remove("loading");
 }
 
 async function showImage() {
