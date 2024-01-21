@@ -185,6 +185,27 @@ button:active {
   align-items: flex-start;
   justify-content: end;
 }
+.loading {
+  background-image: linear-gradient(
+    to right,
+    #f3eeee,
+    #f1eeee,
+    #ece8e8 15%,
+    #ece8e8
+  );
+  background-size: 200%;
+  animation: bacgroundLoading 1s linear infinite;
+} 
+
+@keyframes bacgroundLoading {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: -150%;
+  }
+}
+
 #date {
   font: 300 1.2rem var(--font-family);
 }
