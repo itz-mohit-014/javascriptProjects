@@ -36,8 +36,9 @@ function addNewTasks(e) {
   taskAttachEvents();
   inputTaskDetails.value = "";
   inputTagName.value = "";
-  inputTaskDetails.focus();
+  ;
   if (window.innerWidth > 800) return;
+  inputTaskDetails.focus()
   toggleSideBar(e);
 }
 
