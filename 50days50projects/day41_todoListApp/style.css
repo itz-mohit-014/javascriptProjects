@@ -340,13 +340,16 @@ i {
   color: var(--bg-dark);
   position: absolute;
   bottom: 10px;
-  right: -100%;
+  right: 0px;
   padding: 0.65rem 1rem;
   display: flex;
   gap: 0.75rem;
+  scale:0 1;
+  transform-origin:right;
 }
 .verify-box.active {
   right: 10px;
+  scale:1;
 }
 .verify-box p {
   font: 400 1rem var(--font-family);
