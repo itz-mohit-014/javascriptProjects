@@ -56,8 +56,27 @@
           <h1 class="img-title">Winter Camping</h1>
           <span id="date">Jan 20, 2024</span>
         </header>
+
         <div class="task-container">
-          <h1 class="heading">Up Comming Task</h1>
+          <h1 class="heading center">
+            Up Comming Task
+
+            <div class="categories">
+              <select
+                name="tasks"
+                id="task-categories-filter"
+                class="select-list"
+              >
+                <option value="all" class="select-list-item">All 0</option>
+                <option value="completed" class="select-list-item">
+                  Completed 0
+                </option>
+                <option value="pending" class="select-list-item">
+                  Pending 0
+                </option>
+              </select>
+            </div>
+          </h1>
 
           <div class="task-list-container"></div>
 

@@ -2,16 +2,43 @@ const toggleMenuBtn = document.getElementById("toggleMenu");
 const addNewTaskBtn = document.getElementById("addTaskBtn");
 const taskListContainer = document.querySelector(".task-list-container");
 const verifyBox = document.querySelector(".verify-box");
-const taskHeaderImg = document
-  .querySelector(".task-header img")
-  .addEventListener("load", (e) => {
-    taskHeaderImg.parentElement.classList.remove("loading");
+const taskHeaderImg = document.querySelector(".task-header img");
+const taskCategoriFilter = document.getElementById("task-categories-filter");
+// remove loading effect
+taskHeaderImg.addEventListener("load", (e) => {
+  taskHeaderImg.parentElement.classList.remove("loading");
+});
+
+// local storage
+const getTaskToLocalStorate = JSON.parse(localStorage.getItem("task"));
+if (getTaskToLocalStorate != null) {
+  getTaskToLocalStorate.forEach((storedData) => {
+    storedData.complete == true
+      ? creteNewTask(task.name, task.tag, true)
+      : creteNewTask(task.name, task.tag, false);
   });
-console.log(taskHeaderImg);
+}
+
+const updateStorageData = [];
+
+function updateDataToLocalStorage(taskName, tagName, complete = false) {
+  if (updateStorageData.length > 0) {
+    updateStorageData.forEach((taskData) => {
+      if (taskData.name == taskName) return;
+    });
+  }
+
+  updateStorageData.push({ name: taskName, tag: tagName, complete: complete });
+  console.log(updateStorageData);
+  localStorage.setItem("task", JSON.stringify(updateStorageData));
+}
+
+// header date
 let date = new Date();
 const taskDate = document.getElementById("date");
 taskDate.innerHTML = date.toDateString(date).slice(3);
 
+// toggle
 function toggleSideBar(e) {
   const toggleBtn =
     this.nodeName == "button"
@@ -24,38 +51,52 @@ function toggleSideBar(e) {
     sideBar.children[2].children[1].focus();
   }
 }
-
+// new task
 function addNewTasks(e) {
   const inputTaskDetails = this.parentElement.children[2].children[1];
   const inputTagName = this.parentElement.children[3].children[1];
 
   if (!inputTaskDetails.value || !inputTagName.value) {
-    alert("Please fill all feild"); // need add an custom popup or msg required indicator.
+    if (!inputTaskDetails.value && !inputTagName.value) {
+      inputTaskDetails.classList.add("not-valid");
+      inputTagName.classList.add("not-valid");
+    } else if (!inputTaskDetails.value) {
+      inputTaskDetails.classList.add("not-valid");
+    } else {
+      inputTagName.classList.add("not-valid");
+    }
+    setTimeout(() => {
+      inputTagName.classList.remove("not-valid");
+      inputTaskDetails.classList.remove("not-valid");
+    }, 400);
     return;
   }
-  const newTask = creteNewTask(inputTaskDetails, inputTagName);
-  taskListContainer.insertAdjacentElement("afterbegin", newTask);
-  setTimeout(() => {
-    newTask.classList.add("added");
-  }, 10);
+
+  creteNewTask(inputTaskDetails.value, inputTagName.value);
+  updateDataToLocalStorage(inputTaskDetails.value, inputTagName.value);
+
   taskAttachEvents();
   inputTaskDetails.value = "";
   inputTagName.value = "";
-  if (window.innerWidth > 800) return;
   inputTaskDetails.focus();
+  if (window.innerWidth > 800) return;
   toggleSideBar(e);
+  inputTaskDetails.blur();
 }
 
-function creteNewTask(task, tag) {
+function creteNewTask(taskName, tagName, complete = false) {
   const NewTaskEl = document.createElement("div");
   NewTaskEl.className = "task center transition";
+  if (complete == true) {
+    NewTaskEl.classList.add("completed");
+  }
   NewTaskEl.setAttribute("dragable", true);
   NewTaskEl.innerHTML = `
   <div class="complete-task-icon center transition-fast">
   <i class="fa-solid fa-check"></i>
 </div>
-         <p class="task-details transition-fast">${task.value}</p>
-        <p class="tag-name transition-fast">${tag.value}</p>
+         <p class="task-details transition-fast">${taskName}</p>
+        <p class="tag-name transition-fast">${tagName}</p>
 
         <div class="action-icons transition-fast center">
           <i class="fa-solid fa-ellipsis"></i>
@@ -69,7 +110,13 @@ function creteNewTask(task, tag) {
           </i>
         </div>
     `;
+  taskListContainer.insertAdjacentElement("afterbegin", NewTaskEl);
   taskAttachEvents();
+
+  setTimeout(() => {
+    NewTaskEl.classList.add("added");
+  }, 10);
+  filterTaskList("all");
   return NewTaskEl;
 }
 
@@ -113,17 +160,25 @@ function taskAttachEvents() {
   completeTaskEls.forEach((completeTask) => {
     completeTask.addEventListener("click", (e) => {
       e.currentTarget.parentElement.classList.toggle("completed");
+      filterTaskList("completed");
+
+      if (e.currentTarget.parentElement.children[1].nodeName == "TEXTAREA") {
+        editingFinish(e.currentTarget.parentElement);
+      }
     });
   });
 }
 
 function editTask(e) {
-  const currentTask = e.currentTarget.parentElement;
+  // const currentTask = e.currentTarget.parentElement || e;
+  const currentTask = e.currentTarget.parentElement || e;
   e.currentTarget.classList.remove("active");
 
+  let isCorrectionDone = false;
   if (currentTask.classList.contains("completed")) {
     currentTask.classList.remove("completed");
   }
+
   if (currentTask.children[1].nodeName != "P") {
     const newPara = document.createElement("p");
     newPara.className = "task-details transition";
@@ -135,7 +190,22 @@ function editTask(e) {
     newTextarea.value = currentTask.children[1].textContent;
     currentTask.replaceChild(newTextarea, currentTask.children[1]);
     currentTask.children[1].focus();
+
+    currentTask.addEventListener("click", (e) => {
+      setTimeout(() => {
+        if (e.target == e.currentTarget.children[1]) return false;
+        e.currentTarget.children[1].blur();
+        editingFinish(currentTask);
+      }, 1000);
+    });
   }
+}
+
+function editingFinish(task) {
+  const newPara = document.createElement("p");
+  newPara.className = "task-details transition";
+  newPara.textContent = task.children[1].value;
+  task.replaceChild(newPara, task.children[1]);
 }
 
 async function removeTask(e) {
@@ -158,8 +228,21 @@ async function removeTask(e) {
   if (isRemoveValue != "true") return;
 
   currentTask.classList.remove("added");
+
+  // remove from local storage
+  updateStorageData.forEach((taskData, idx) => {
+    if (
+      taskData.name == currentTask.children[1].innerHTML ||
+      currentTask.children[1].value
+    ) {
+      updateStorageData.splice(idx, 1);
+    }
+  });
+  localStorage.setItem("task", JSON.stringify(updateStorageData));
+
   currentTask.addEventListener("transitionend", (e) => {
     e.currentTarget.remove();
+    filterTaskList("all");
   });
 }
 
@@ -169,5 +252,49 @@ function isRemove(e) {
   return e.target.value;
 }
 
+function filterTaskList(e) {
+  const allTask = Array.from(document.getElementsByClassName("task"));
+  const filterValue = typeof e == "string" ? e : e.target.value;
+  const selectList = Array.from(taskCategoriFilter.children);
+
+  let completedTask = allTask.filter((task) => {
+    return task.classList.contains("completed");
+  });
+
+  let pendingTask = allTask.filter((task) => {
+    return !task.classList.contains("completed");
+  });
+
+  switch (filterValue) {
+    case "completed":
+      allTask.forEach((task) => (task.style.display = "none"));
+      completedTask.forEach((task) => (task.style.display = "flex"));
+      break;
+    case "pending":
+      allTask.forEach((task) => (task.style.display = "none"));
+      pendingTask.forEach((task) => (task.style.display = "flex"));
+      break;
+    default:
+      allTask.forEach((task) => (task.style.display = "flex"));
+  }
+
+  selectList.forEach((list, idx) => {
+    if (idx == 0) {
+      list.innerHTML = `${list.value
+        .slice(0, 1)
+        .toUpperCase()}${list.value.slice(1)} ${allTask.length}`;
+    } else if (idx == 1) {
+      list.innerHTML = `${list.value
+        .slice(0, 1)
+        .toUpperCase()}${list.value.slice(1)} ${completedTask.length}`;
+    } else if (idx == 2) {
+      list.innerHTML = `${list.value
+        .slice(0, 1)
+        .toUpperCase()}${list.value.slice(1)} ${pendingTask.length}`;
+    }
+  });
+}
+
 toggleMenuBtn.addEventListener("click", toggleSideBar);
 addNewTaskBtn.addEventListener("click", addNewTasks);
+taskCategoriFilter.addEventListener("change", filterTaskList);

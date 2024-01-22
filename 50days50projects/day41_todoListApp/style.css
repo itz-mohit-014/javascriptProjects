@@ -154,7 +154,7 @@ input,
   border-radius: 4px;
   color: var(--white);
   font: 400 1.1rem var(--font-family);
-  border: none;
+  border: 2px solid transparent;
   outline: none;
   background-color: var(--secondary-dark);
 }
@@ -175,6 +175,10 @@ button:active {
   scale: 0.96;
 }
 
+input.not-valid {
+  border: 2px solid #ff0000;
+  animation: tilt 0.2s ease-in-out;
+}
 /* right sidebar */
 .right {
   flex: 1;
@@ -185,7 +189,8 @@ button:active {
 }
 .task-header {
   height: 30%;
-  height: clamp(200px, 40%, 320px);
+  width: 100%;
+  height: clamp(220px, 40%, 320px);
   flex-direction: column;
   align-items: flex-start;
   justify-content: end;
@@ -217,18 +222,11 @@ button:active {
   background-size: 200%;
   animation: bacgroundLoading 1s linear infinite;
 }
-@keyframes bacgroundLoading {
-  0% {
-    background-position: -50%;
-  }
-  100% {
-    background-position: 150%;
-  }
-}
 
 #date {
   font: 300 1.2rem var(--font-family);
 }
+
 .task-container {
   padding: 1rem;
   flex: 1;
@@ -240,7 +238,25 @@ button:active {
   color: var(--text-color);
   border-bottom: 1px solid var(--text-color);
   font-size: 1.5rem;
-  padding-bottom: 0.8rem;
+  padding-bottom: 0.2rem;
+  justify-content: flex-start;
+}
+
+.categories {
+  margin-left: 1.2rem;
+}
+.select-list {
+  padding: 0.6rem 1rem;
+  border: none;
+  background-color: transparent;
+  /* border: 1px solid #fff; */
+  outline: none;
+  cursor: pointer;
+  color: var(--white);
+  font: 400 1rem var(--font-family);
+}
+.select-list-item {
+  background-color: var(--bg-dark);
 }
 
 .task-list-container {
@@ -298,6 +314,8 @@ textarea.task-details {
   border: none;
   height: 2rem;
   background-color: transparent;
+
+  border: 1px solid #fff;
 }
 
 .task.completed .task-details {
@@ -409,15 +427,35 @@ i {
   color: #ff0000;
 }
 
+/* animations */
+@keyframes tilt {
+  0%,
+  100% {
+    width: calc(100% - 8px);
+    transform: translate(-4px);
+  }
+  50% {
+    width: calc(100% - 8px);
+    transform: translate(4px);
+  }
+}
+@keyframes bacgroundLoading {
+  0% {
+    background-position: -50%;
+  }
+  100% {
+    background-position: 150%;
+  }
+}
+/* for responsiveness */
 @media screen and (min-width: 800px) {
   body {
     padding: 1rem;
   }
   .dashboard {
-    height: 85%;
+    height: 95%;
     width: 100%;
     max-width: 1200px;
-    max-height: 800px;
     border-radius: 1.5rem;
   }
   .left {
