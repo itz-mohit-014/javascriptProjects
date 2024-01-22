@@ -2,7 +2,12 @@ const toggleMenuBtn = document.getElementById("toggleMenu");
 const addNewTaskBtn = document.getElementById("addTaskBtn");
 const taskListContainer = document.querySelector(".task-list-container");
 const verifyBox = document.querySelector(".verify-box");
-
+const taskHeaderImg = document
+  .querySelector(".task-header img")
+  .addEventListener("load", (e) => {
+    taskHeaderImg.parentElement.classList.remove("loading");
+  });
+console.log(taskHeaderImg);
 let date = new Date();
 const taskDate = document.getElementById("date");
 taskDate.innerHTML = date.toDateString(date).slice(3);
@@ -36,8 +41,8 @@ function addNewTasks(e) {
   taskAttachEvents();
   inputTaskDetails.value = "";
   inputTagName.value = "";
-  inputTaskDetails.focus();
   if (window.innerWidth > 800) return;
+  inputTaskDetails.focus();
   toggleSideBar(e);
 }
 
@@ -46,21 +51,21 @@ function creteNewTask(task, tag) {
   NewTaskEl.className = "task center transition";
   NewTaskEl.setAttribute("dragable", true);
   NewTaskEl.innerHTML = `
-  <div class="complete-task-icon center transition">
+  <div class="complete-task-icon center transition-fast">
   <i class="fa-solid fa-check"></i>
 </div>
-         <p class="task-details transition">${task.value}</p>
-        <p class="tag-name transition">${tag.value}</p>
+         <p class="task-details transition-fast">${task.value}</p>
+        <p class="tag-name transition-fast">${tag.value}</p>
 
-        <div class="action-icons transition center">
+        <div class="action-icons transition-fast center">
           <i class="fa-solid fa-ellipsis"></i>
         </div>
 
-        <div class="more-icons transition">
+        <div class="more-icons transition-fast">
           <i class="fa-solid fa-pencil">
           </i>
   
-          <i class="fa-solid fa-trash-can transition">
+          <i class="fa-solid fa-trash-can transition-fast">
           </i>
         </div>
     `;
@@ -101,6 +106,7 @@ function taskAttachEvents() {
       } else {
         removeTask(e);
       }
+      moreActionBtn.previousElementSibling.classList.remove("active");
     });
   });
 

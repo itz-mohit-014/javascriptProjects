@@ -13,7 +13,8 @@
   --tag-green: #aeffa7;
   --font-family: "Poppins", sans-serif;
   --text-color: #b8b8b8;
-  --ease: 0.25s linear;
+  --linear: 0.25s linear;
+  --linear-fast: 0.15s linear;
 }
 
 * {
@@ -35,10 +36,16 @@ body {
   justify-content: center;
 }
 .transition {
-  transition: var(--ease);
-  -webkit-transition: var(--ease);
-  -moz-transition: var(--ease);
-  -o-transition: var(--ease);
+  transition: var(--linear);
+  -webkit-transition: var(--linear);
+  -moz-transition: var(--linear);
+  -o-transition: var(--linear);
+}
+.transition-fast {
+  transition: var(--linear-fast);
+  -webkit-transition: var(--linear-fast);
+  -moz-transition: var(--linear-fast);
+  -o-transition: var(--linear-fast);
 }
 /* styling */
 .dashboard {
@@ -50,7 +57,8 @@ body {
   position: relative;
 }
 
-.heading {
+.heading,
+.img-title {
   color: var(--white);
   font: 600 1.75rem var(--font-family);
 }
@@ -177,29 +185,41 @@ button:active {
 }
 .task-header {
   height: 30%;
-  min-height: 240px;
-  background: no-repeat url("https://unsplash.it/400/250?image=1043") center /
-    cover;
-  padding: 1rem;
+  height: clamp(200px, 40%, 320px);
   flex-direction: column;
   align-items: flex-start;
   justify-content: end;
+  padding: 1rem;
+  position: relative;
 }
-
+.task-header img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+}
+.img-title,
+#date {
+  position: relative;
+}
 .loading {
   background-image: linear-gradient(
     to right,
-    #f3eeee,
-    #f1eeee,
-    #ece8ed 15%,
-    #ece8ed
+    #cfcece 0%,
+    #f0eded 10%,
+    #cfcece 20%,
+    #cfcece
   );
   background-size: 200%;
   animation: bacgroundLoading 1s linear infinite;
 }
 @keyframes bacgroundLoading {
   0% {
-    background-position: -150%;
+    background-position: -50%;
   }
   100% {
     background-position: 150%;
