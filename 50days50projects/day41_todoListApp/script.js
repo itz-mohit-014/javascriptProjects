@@ -1,58 +1,68 @@
 const toggleMenuBtn = document.getElementById("toggleMenu");
 const addNewTaskBtn = document.getElementById("addTaskBtn");
-const taskListContainer = document.querySelector(".task-list-container");
-const verifyBox = document.querySelector(".verify-box");
 const taskHeaderImg = document.querySelector(".task-header img");
 const taskCategoriFilter = document.getElementById("task-categories-filter");
+const taskListContainer = document.querySelector(".task-list-container");
+const verifyBox = document.querySelector(".verify-box");
+let date = new Date();
+
 // remove loading effect
 taskHeaderImg.addEventListener("load", (e) => {
   taskHeaderImg.parentElement.classList.remove("loading");
 });
 
 // local storage
+const updateStorageData = [];
+function updateDataToLocalStorage(taskName, tagName, complete = false) {
+  let previousUpdate = false;
+  if (updateStorageData.length > 0) {
+    updateStorageData.forEach((storedData) => {
+      if (storedData.tag === tagName) {
+        storedData.name = taskName;
+        storedData.tag = tagName;
+        storedData.complete = complete;
+        previousUpdate = true;
+      }
+    });
+  }
+  if (!previousUpdate) {
+    updateStorageData.push({
+      name: taskName,
+      tag: tagName,
+      complete: complete,
+    });
+  }
+  localStorage.setItem("task", JSON.stringify(updateStorageData));
+}
+
 const getTaskToLocalStorate = JSON.parse(localStorage.getItem("task"));
 if (getTaskToLocalStorate != null) {
   getTaskToLocalStorate.forEach((storedData) => {
     storedData.complete == true
-      ? creteNewTask(task.name, task.tag, true)
-      : creteNewTask(task.name, task.tag, false);
+      ? creteNewTask(storedData.name, storedData.tag, "completed")
+      : creteNewTask(storedData.name, storedData.tag, "");
+    updateStorageData.push(storedData);
   });
 }
 
-const updateStorageData = [];
-
-function updateDataToLocalStorage(taskName, tagName, complete = false) {
-  if (updateStorageData.length > 0) {
-    updateStorageData.forEach((taskData) => {
-      if (taskData.name == taskName) return;
-    });
-  }
-
-  updateStorageData.push({ name: taskName, tag: tagName, complete: complete });
-  console.log(updateStorageData);
-  localStorage.setItem("task", JSON.stringify(updateStorageData));
-}
-
 // header date
-let date = new Date();
 const taskDate = document.getElementById("date");
 taskDate.innerHTML = date.toDateString(date).slice(3);
 
 // toggle
 function toggleSideBar(e) {
-  const toggleBtn =
-    this.nodeName == "button"
-      ? this
-      : e.currentTarget.parentElement.children[0];
-  const sideBar = this.parentElement1 || e.currentTarget.parentElement;
+  const toggleBtn = e.currentTarget.parentElement.children[0];
+  const sideBar = e.currentTarget.parentElement;
   toggleBtn.classList.toggle("active");
   sideBar.classList.toggle("active");
   if (sideBar.classList.contains("active")) {
     sideBar.children[2].children[1].focus();
   }
 }
+
 // new task
 function addNewTasks(e) {
+  e.preventDefault();
   const inputTaskDetails = this.parentElement.children[2].children[1];
   const inputTagName = this.parentElement.children[3].children[1];
 
@@ -72,133 +82,154 @@ function addNewTasks(e) {
     return;
   }
 
-  creteNewTask(inputTaskDetails.value, inputTagName.value);
-  updateDataToLocalStorage(inputTaskDetails.value, inputTagName.value);
-
-  taskAttachEvents();
+  creteNewTask(inputTaskDetails.value, inputTagName.value, false);
+  updateDataToLocalStorage(inputTaskDetails.value, inputTagName.value, false);
   inputTaskDetails.value = "";
   inputTagName.value = "";
-  inputTaskDetails.focus();
-  if (window.innerWidth > 800) return;
-  toggleSideBar(e);
-  inputTaskDetails.blur();
+  if (window.innerWidth > 800) {
+    inputTaskDetails.focus();
+  } else {
+    toggleSideBar(e);
+    inputTaskDetails.blur();
+  }
 }
 
-function creteNewTask(taskName, tagName, complete = false) {
+function creteNewTask(taskDetail, tagName, complete) {
   const NewTaskEl = document.createElement("div");
-  NewTaskEl.className = "task center transition";
-  if (complete == true) {
-    NewTaskEl.classList.add("completed");
-  }
+  NewTaskEl.className = `task center transition ${complete}`;
   NewTaskEl.setAttribute("dragable", true);
   NewTaskEl.innerHTML = `
-  <div class="complete-task-icon center transition-fast">
-  <i class="fa-solid fa-check"></i>
-</div>
-         <p class="task-details transition-fast">${taskName}</p>
-        <p class="tag-name transition-fast">${tagName}</p>
+    <div class="complete-task-icon center transition-fast">
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <p class="task-details transition-fast">${taskDetail}</p>
+    <p class="tag-name transition-fast">${tagName}</p>
 
-        <div class="action-icons transition-fast center">
-          <i class="fa-solid fa-ellipsis"></i>
-        </div>
-
-        <div class="more-icons transition-fast">
-          <i class="fa-solid fa-pencil">
-          </i>
-  
-          <i class="fa-solid fa-trash-can transition-fast">
-          </i>
-        </div>
+    <div class="action-icons transition-fast center">
+      <i class="fa-solid fa-ellipsis"></i>
+    </div>
+    <div class="more-icons transition-fast">
+      <i class="fa-solid fa-pencil"></i>
+      <i class="fa-solid fa-trash-can transition-fast"></i>
+    </div>
     `;
   taskListContainer.insertAdjacentElement("afterbegin", NewTaskEl);
   taskAttachEvents();
-
+  // for animation
   setTimeout(() => {
     NewTaskEl.classList.add("added");
   }, 10);
   filterTaskList("all");
-  return NewTaskEl;
 }
 
 function taskAttachEvents() {
-  const actionBtns = Array.from(
-    document.getElementsByClassName("action-icons")
-  );
-  const expandMoreActions = Array.from(
-    document.getElementsByClassName("more-icons")
-  );
-  const completeTaskEls = Array.from(
-    document.getElementsByClassName("complete-task-icon")
-  );
+  const actionBtn = document.querySelector(".action-icons");
+  const expandMoreAction = document.querySelector(".more-icons");
+  const completeTaskEl = document.querySelector(".complete-task-icon");
 
-  actionBtns.forEach((actionBtn) => {
-    actionBtn.addEventListener("click", (e) => {
-      expandMoreActions.forEach((moreActionBtn) => {
-        moreActionBtn.classList.remove("active");
-      });
-      e.currentTarget.classList.toggle("active");
-      if (e.currentTarget.classList.contains("active")) {
-        e.currentTarget.nextElementSibling.classList.add("active");
-      } else {
-        e.currentTarget.nextElementSibling.classList.remove("active");
-      }
-    });
+  actionBtn.addEventListener("click", (e) => {
+    e.currentTarget.classList.toggle("active");
+    if (e.currentTarget.classList.contains("active")) {
+      closeActionBtns();
+      e.currentTarget.classList.add("active");
+      e.currentTarget.nextElementSibling.classList.add("active");
+    } else {
+      e.currentTarget.nextElementSibling.classList.remove("active");
+    }
   });
 
-  expandMoreActions.forEach((moreActionBtn) => {
-    moreActionBtn.addEventListener("click", (e) => {
-      if (e.currentTarget == e.target) return;
-      if (e.target.classList.contains("fa-pencil")) {
-        editTask(e);
-      } else {
-        removeTask(e);
-      }
-      moreActionBtn.previousElementSibling.classList.remove("active");
-    });
+  expandMoreAction.addEventListener("click", (e) => {
+    if (e.currentTarget == e.target) return;
+    if (e.target.classList.contains("fa-pencil")) {
+      editTask(e);
+    } else {
+      removeTask(e);
+    }
+    // to reset class
+    expandMoreAction.previousElementSibling.classList.remove("active");
   });
 
-  completeTaskEls.forEach((completeTask) => {
-    completeTask.addEventListener("click", (e) => {
-      e.currentTarget.parentElement.classList.toggle("completed");
-      filterTaskList("completed");
-
-      if (e.currentTarget.parentElement.children[1].nodeName == "TEXTAREA") {
-        editingFinish(e.currentTarget.parentElement);
-      }
-    });
+  completeTaskEl.addEventListener("click", (e) => {
+    e.currentTarget.parentElement.classList.toggle("completed");
+    // update local storage
+    if (e.currentTarget.parentElement.classList.contains("completed")) {
+      updateDataToLocalStorage(
+        e.currentTarget.parentElement.children[1].innerHTML,
+        e.currentTarget.parentElement.children[2].innerHTML,
+        true
+      );
+    } else {
+      updateDataToLocalStorage(
+        e.currentTarget.parentElement.children[1].innerHTML,
+        e.currentTarget.parentElement.children[2].innerHTML,
+        false
+      );
+    }
+    filterTaskList("completed");
+    if (e.currentTarget.parentElement.children[1].nodeName == "TEXTAREA") {
+      editingFinish(e.currentTarget.parentElement);
+    }
   });
 }
 
-function editTask(e) {
-  // const currentTask = e.currentTarget.parentElement || e;
-  const currentTask = e.currentTarget.parentElement || e;
-  e.currentTarget.classList.remove("active");
+function closeActionBtns() {
+  const allTask = Array.from(taskListContainer.getElementsByClassName("task"));
+  allTask.forEach((task) => {
+    task.children[3].classList.remove("active");
+    task.children[4].classList.remove("active");
+  });
+}
 
-  let isCorrectionDone = false;
+// to edit task details
+async function editTask(e) {
+  const currentTask = e.currentTarget.parentElement || e;
+  if (e.currentTarget) {
+    e.currentTarget.classList.remove("active");
+  }
+
   if (currentTask.classList.contains("completed")) {
     currentTask.classList.remove("completed");
   }
 
-  if (currentTask.children[1].nodeName != "P") {
-    const newPara = document.createElement("p");
-    newPara.className = "task-details transition";
-    newPara.textContent = currentTask.children[1].value;
-    currentTask.replaceChild(newPara, currentTask.children[1]);
-  } else {
+  if (currentTask.children[1].nodeName != "TEXTAREA") {
     const newTextarea = document.createElement("textarea");
     newTextarea.className = "task-details transition";
+    newTextarea.name = "input-task-details";
     newTextarea.value = currentTask.children[1].textContent;
     currentTask.replaceChild(newTextarea, currentTask.children[1]);
     currentTask.children[1].focus();
 
-    currentTask.addEventListener("click", (e) => {
-      setTimeout(() => {
-        if (e.target == e.currentTarget.children[1]) return false;
-        e.currentTarget.children[1].blur();
-        editingFinish(currentTask);
-      }, 1000);
+    let isCorrectionDone = new Promise((resolve) => {
+      newTextarea.addEventListener("blur", () => {
+        let isDone = correctionDone(newTextarea);
+        resolve(isDone);
+      });
     });
+
+    let isEditCompleted = await isCorrectionDone;
+    if (isEditCompleted) {
+      editingFinish(currentTask);
+    }
+    //  update locally
+    // update local storage
+    if (e.currentTarget.parentElement.classList.contains("completed")) {
+      updateDataToLocalStorage(
+        e.currentTarget.parentElement.children[1].innerHTML,
+        e.currentTarget.parentElement.children[2].innerHTML,
+        true
+      );
+    } else {
+      updateDataToLocalStorage(
+        e.currentTarget.parentElement.children[1].innerHTML,
+        e.currentTarget.parentElement.children[2].innerHTML,
+        false
+      );
+    }
   }
+}
+
+function correctionDone(textarea) {
+  return textarea.value.trim() !== "";
 }
 
 function editingFinish(task) {
@@ -224,9 +255,8 @@ async function removeTask(e) {
     );
   });
 
-  isRemoveValue = await removeCurrnetTask;
+  let isRemoveValue = await removeCurrnetTask;
   if (isRemoveValue != "true") return;
-
   currentTask.classList.remove("added");
 
   // remove from local storage
@@ -292,6 +322,7 @@ function filterTaskList(e) {
         .slice(0, 1)
         .toUpperCase()}${list.value.slice(1)} ${pendingTask.length}`;
     }
+    list.value == filterValue ? (list.selected = true) : null;
   });
 }
 
