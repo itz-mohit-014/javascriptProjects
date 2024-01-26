@@ -34,7 +34,6 @@ function updateDataToLocalStorage(taskName, tagName, complete = false) {
     });
   }
   localStorage.setItem("task", JSON.stringify(updateStorageData));
-  console.log(updateStorageData);
 }
 
 const getTaskToLocalStorate = JSON.parse(localStorage.getItem("task"));
