@@ -1,4 +1,5 @@
 const toggleMenuBtn = document.getElementById("toggleMenu");
+const toggleThemeBtn = document.getElementById("toggle-theme-btn");
 const addNewTaskBtn = document.getElementById("addTaskBtn");
 const taskHeaderImg = document.querySelector(".task-header img");
 const taskCategoriFilter = document.getElementById("task-categories-filter");
@@ -33,6 +34,7 @@ function updateDataToLocalStorage(taskName, tagName, complete = false) {
     });
   }
   localStorage.setItem("task", JSON.stringify(updateStorageData));
+  console.log(updateStorageData);
 }
 
 const getTaskToLocalStorate = JSON.parse(localStorage.getItem("task"));
@@ -51,20 +53,32 @@ taskDate.innerHTML = date.toDateString(date).slice(3);
 
 // toggle
 function toggleSideBar(e) {
-  const toggleBtn = e.currentTarget.parentElement.children[0];
   const sideBar = e.currentTarget.parentElement;
-  toggleBtn.classList.toggle("active");
+  toggleMenuBtn.classList.toggle("active");
   sideBar.classList.toggle("active");
   if (sideBar.classList.contains("active")) {
-    sideBar.children[2].children[1].focus();
+    sideBar.children[3].children[1].focus();
   }
+}
+
+function changeTheme(e) {
+  const darkThemeColor = {
+    "--color": "#fff",
+    "--color": "#000",
+    "--bg-color": "#e3e3e3",
+    "--bg-color": "#0e0b11",
+    "--primary": "#1a171d",
+    "--secondary": "#f7f7f726",
+    "--text-color": "#b8b8b8",
+  };
+  document.body.classList.toggle("light");
 }
 
 // new task
 function addNewTasks(e) {
   e.preventDefault();
-  const inputTaskDetails = this.parentElement.children[2].children[1];
-  const inputTagName = this.parentElement.children[3].children[1];
+  const inputTaskDetails = this.parentElement.children[3].children[1];
+  const inputTagName = this.parentElement.children[4].children[1];
 
   if (!inputTaskDetails.value || !inputTagName.value) {
     if (!inputTaskDetails.value && !inputTagName.value) {
@@ -181,11 +195,25 @@ function closeActionBtns() {
 }
 
 // to edit task details
-async function editTask(e) {
-  const currentTask = e.currentTarget.parentElement || e;
-  if (e.currentTarget) {
-    e.currentTarget.classList.remove("active");
+function editTask(e) {
+  const currentTask = e.currentTarget.parentElement;
+
+  async function taskEditing(newTextarea) {
+    let isCorrectionDone = new Promise((resolve) => {
+      newTextarea.addEventListener("blur", (e) => {
+        let isDone = correctionDone(newTextarea, e);
+        resolve(isDone);
+      });
+    });
+    let isEditCompleted = await isCorrectionDone;
+
+    if (isEditCompleted) {
+      editingFinish(currentTask);
+    } else {
+      taskEditing(newTextarea);
+    }
   }
+  e.currentTarget.classList.remove("active");
 
   if (currentTask.classList.contains("completed")) {
     currentTask.classList.remove("completed");
@@ -199,37 +227,29 @@ async function editTask(e) {
     currentTask.replaceChild(newTextarea, currentTask.children[1]);
     currentTask.children[1].focus();
 
-    let isCorrectionDone = new Promise((resolve) => {
-      newTextarea.addEventListener("blur", () => {
-        let isDone = correctionDone(newTextarea);
-        resolve(isDone);
-      });
-    });
-
-    let isEditCompleted = await isCorrectionDone;
-    if (isEditCompleted) {
-      editingFinish(currentTask);
-    }
-    //  update locally
-    // update local storage
-    if (e.currentTarget.parentElement.classList.contains("completed")) {
-      updateDataToLocalStorage(
-        e.currentTarget.parentElement.children[1].innerHTML,
-        e.currentTarget.parentElement.children[2].innerHTML,
-        true
-      );
-    } else {
-      updateDataToLocalStorage(
-        e.currentTarget.parentElement.children[1].innerHTML,
-        e.currentTarget.parentElement.children[2].innerHTML,
-        false
-      );
-    }
+    taskEditing(newTextarea);
   }
 }
 
 function correctionDone(textarea) {
-  return textarea.value.trim() !== "";
+  if (textarea.value.trim() === "") return false;
+  let updateText = textarea.value.trim();
+  // update local storage
+  if (textarea.parentElement.classList.contains("completed")) {
+    updateDataToLocalStorage(
+      updateText,
+      textarea.nextElementSibling.innerHTML,
+      true
+    );
+  } else {
+    updateDataToLocalStorage(
+      textarea.value,
+      textarea.nextElementSibling.innerHTML,
+      false
+    );
+  }
+
+  return updateText;
 }
 
 function editingFinish(task) {
@@ -327,5 +347,6 @@ function filterTaskList(e) {
 }
 
 toggleMenuBtn.addEventListener("click", toggleSideBar);
+toggleThemeBtn.addEventListener("click", changeTheme);
 addNewTaskBtn.addEventListener("click", addNewTasks);
 taskCategoriFilter.addEventListener("change", filterTaskList);
