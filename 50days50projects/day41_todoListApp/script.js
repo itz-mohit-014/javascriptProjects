@@ -61,15 +61,6 @@ function toggleSideBar(e) {
 }
 
 function changeTheme(e) {
-  const darkThemeColor = {
-    "--color": "#fff",
-    "--color": "#000",
-    "--bg-color": "#e3e3e3",
-    "--bg-color": "#0e0b11",
-    "--primary": "#1a171d",
-    "--secondary": "#f7f7f726",
-    "--text-color": "#b8b8b8",
-  };
   document.body.classList.toggle("light");
 }
 
