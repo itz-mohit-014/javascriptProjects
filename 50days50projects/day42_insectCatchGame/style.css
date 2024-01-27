@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  --font: "Press Start 2P", system-ui;
+  --color-blue: #516dff;
+  --color-white: #fff;
+  font-family: var(--font);
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.transition {
+  transition: 0.15s linear;
+  -webkit-transition: 0.15s linear;
+  -moz-transition: 0.15s linear;
+  -o-transition: 0.15s linear;
+}
+
+/* Play Game sectionn style */
+section {
+  flex: 1 0 100%;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+h1 {
+  text-align: center;
+  font: 700 2rem / 3rem var(--font);
+}
+
+button {
+  font: 400 0.8rem var(--font);
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+button a {
+  background-color: var(--color-white);
+  padding: 1rem 1.5rem;
+  color: var(--color-blue);
+}
+
+button:hover {
+  background-color: #f7f6f6f1;
+}
+button:active {
+  scale: 0.96;
+}
+
+/* insect selection style */
+ul {
+  width: 100%;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+li {
+  list-style: none;
+  cursor: pointer;
+}
+.insects a {
+  padding: 0.9rem;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  height: 150px;
+  width: 150px;
+  border: 2px solid #fff;
+}
+
+.insects a:hover {
+  background-color: var(--color-white);
+}
+.insects h3 {
+  color: var(--color-white);
+  font: 400 0.9rem var(--font);
+}
+
+.insects:hover h3 {
+  color: var(--color-blue);
+}
+.insects img {
+  width: 85%;
+  object-fit: contain;
+}
+.header {
+  justify-content: space-between;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  height: 60px;
+}
+
+.header .side {
+  font: 700 1.25rem var(--font);
+}
+
+.playground {
+  width: 100%;
+  height: calc(100% - 60px);
+  position: relative;
+}
+
+.playground img {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  z-index: 1;
+  scale: 0;
+  cursor: pointer;
+}
+
+.playground img.show {
+  scale: 1;
+}
+
+.overlay-action {
+  position: absolute;
+  z-index: 2;
+  top: -100px;
+  left: 0px;
+  width: 100%;
+  height: 100px;
+  background-color: #283680;
+  visibility: hidden;
+  transition: 0.4s ease-out;
+  -webkit-transition: 0.4s ease-out;
+  -moz-transition: 0.4s ease-out;
+  -o-transition: 0.4s ease-out;
+}
+
+.overlay-action p {
+  padding: 1rem 0px;
+  text-align: center;
+  font: 700 1.25rem / 2rem var(--font);
+}
+
+.overlay-action.show {
+  visibility: visible;
+  top: 30vh;
+}

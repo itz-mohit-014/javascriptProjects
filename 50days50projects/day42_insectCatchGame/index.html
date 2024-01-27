@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catch The Insect</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="hero center transition">
+      <div class="container center">
+        <h1 class="title">Catch The Insect</h1>
+        <button type="button" class="transition" id="play-game">
+          <a href="#select-insect"> Play Game </a>
+        </button>
+      </div>
+    </section>
+
+    <section class="insect-selection center transition" id="select-insect">
+      <div class="container center">
+        <h1 class="title">What is your "favorite" insect?</h1>
+        <ul class="select-insect-container center">
+          <li class="insects center transition">
+            <a href="#playground" class="center">
+              <h3 class="insect-name">Fly</h3>
+              <img
+                src="http://pngimg.com/uploads/fly/fly_PNG3946.png"
+                alt="Fly"
+              />
+            </a>
+          </li>
+
+          <li class="insects center transition">
+            <a href="#playground" class="center">
+              <h3 class="insect-name">Mosquito</h3>
+              <img
+                src="http://pngimg.com/uploads/mosquito/mosquito_PNG18175.png"
+                alt="Mosquito"
+              />
+            </a>
+          </li>
+
+          <li class="insects center transition">
+            <a href="#playground" class="center">
+              <h3 class="insect-name">Spider</h3>
+              <img
+                src="http://pngimg.com/uploads/spider/spider_PNG12.png"
+                alt="spider"
+              />
+            </a>
+          </li>
+
+          <li class="insects center transition">
+            <a href="#playground" class="center">
+              <h3 class="insect-name">Roach</h3>
+              <img
+                src="http://pngimg.com/uploads/roach/roach_PNG12163.png"
+                alt="roach"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="playground-section transition" id="playground">
+      <div class="header center">
+        <div class="side">
+          Time:
+          <span>00:00</span>
+        </div>
+        <div class="side">
+          Score
+          <span>0</span>
+        </div>
+      </div>
+      <div class="playground"></div>
+
+      <div class="overlay-action">
+        <p class="message">
+          Are you annoyed yet?<br />
+          You are playing an impossible game!!
+        </p>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
