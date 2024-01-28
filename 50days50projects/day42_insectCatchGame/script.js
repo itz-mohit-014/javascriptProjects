@@ -34,8 +34,8 @@ function startGame(e) {
 
 function addInsectToScreen() {
   const rect = playgroundSection.children[1].getBoundingClientRect();
-  const height = rect.height - 180;
-  const width = rect.width - 180;
+  const height = rect.height - 80;
+  const width = rect.width - 80;
   console.log(rect.height, rect.width);
   const randomPosX = Math.floor(Math.random() * width);
   const randomPosY = Math.floor(Math.random() * height);
@@ -77,7 +77,7 @@ function countScore() {
   currentScore++;
   let scoreEl = playgroundSection.children[0].children[1].children[0];
   scoreEl.innerHTML = currentScore;
-  if (currentScore > 50) {
+  if (currentScore > 500) {
     stopGame();
   }
 }
