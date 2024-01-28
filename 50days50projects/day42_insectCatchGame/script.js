@@ -77,7 +77,7 @@ function countScore() {
   currentScore++;
   let scoreEl = playgroundSection.children[0].children[1].children[0];
   scoreEl.innerHTML = currentScore;
-  if (currentScore > 20) {
+  if (currentScore > 50) {
     stopGame();
   }
 }
