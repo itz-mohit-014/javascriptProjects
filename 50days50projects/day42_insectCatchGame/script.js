@@ -1,30 +1,42 @@
-const allInsectList = document.querySelectorAll(".insects a");
+const allInsectList = document.querySelectorAll(".insects");
 const playgroundSection = document.querySelector(".playground-section");
 const mainPlayground = playgroundSection.children[1];
 const playGameBtn = document.getElementById("play-game");
 const attentionMessage = document.querySelector(".overlay-action");
 
 let eventsEnable = true;
-let invervalId = null;
+let intervalId = null;
+let insectURL = {};
 let currentScore = 0;
-let insectURL = null;
 
 attentionMessage.classList.remove("show");
-playGameBtn.addEventListener("click", () => {
-  if (mainPlayground.children.length > 0)
-    mainPlayground.removeChild(mainPlayground.children[0]);
+playGameBtn.addEventListener("click", (e) => {
+  if (mainPlayground.children.length > 0) {
+    for (let i = 0; i < mainPlayground.children.length; i++) {
+      mainPlayground.removeChild(mainPlayground.children[i]);
+    }
+  }
+  scrollToNext(e);
 });
 
+function scrollToNext(e) {
+  let section = e.currentTarget.closest("section");
+  section.classList.add("up");
+}
+
 function startGame(e) {
-  insectURL = e.currentTarget.children[1].src;
+  insectURL.src = e.currentTarget.children[1].src;
+  insectURL.alt = e.currentTarget.children[1].alt;
+  scrollToNext(e);
   addInsectToScreen();
   startTime();
 }
 
 function addInsectToScreen() {
   const rect = playgroundSection.children[1].getBoundingClientRect();
-  const height = rect.height - 100;
-  const width = rect.width - 100;
+  const height = rect.height - 180;
+  const width = rect.width - 180;
+  console.log(rect.height, rect.width);
   const randomPosX = Math.floor(Math.random() * width);
   const randomPosY = Math.floor(Math.random() * height);
   const insectImg = createInsect(insectURL);
@@ -33,10 +45,10 @@ function addInsectToScreen() {
   mainPlayground.appendChild(insectImg);
 }
 
-function createInsect(src) {
+function createInsect(insectURL) {
   const img = document.createElement("img");
-  img.src = src;
-  img.alt = "insect";
+  img.src = insectURL.src;
+  img.alt = insectURL.alt;
   img.className = "transition";
   img.addEventListener("click", imageEvent);
   setTimeout(() => {
@@ -58,7 +70,7 @@ function imageEvent(e) {
   }, 300);
   setTimeout(() => {
     addInsectToScreen();
-  }, 480);
+  }, 500);
 }
 
 function countScore() {
@@ -72,30 +84,18 @@ function countScore() {
 
 function startTime() {
   let timeEl = playgroundSection.children[0].children[0].children[0];
-  let second = 1;
-  let minitus = 0;
+  let second = 0;
   function setTime() {
-    if (!eventsEnable) {
-      clearInterval(invervalId);
-    }
-
-    second = 60 / second;
-    minitus = second % 60;
-    // second++;
-    // if (second > 60) {
-    //   second = 0;
-    //   min++;
-    // }
-    // if (second < 10 && min < 10) {
-    //   timeEl.innerHTML = `0${min}:0${second}`;
-    // } else if (min < 10) {
-    //   timeEl.innerHTML = `0${min}:${second}`;
-    // } else if (second < 10) {
-    //   timeEl.innerHTML = `${min}:0${second}`;
-    // }
+    if (!eventsEnable) clearInterval(intervalId);
+    let s = second % 60;
+    let m = Math.trunc(second / 60);
+    m = m < 10 ? `0${m}` : m;
+    s = s < 10 ? `0${s}` : s;
+    timeEl.innerHTML = `${m}:${s}`;
+    second++;
   }
 
-  invervalId = setInterval(setTime, 1000);
+  intervalId = setInterval(setTime, 1000);
 }
 
 function stopGame() {

@@ -44,10 +44,19 @@ a {
 
 /* Play Game sectionn style */
 section {
+  padding: 0.5rem;
   flex: 1 0 100%;
-  height: 100%;
   width: 100%;
   position: relative;
+
+  transition: 0.35s linear;
+  -webkit-transition: 0.35s linear;
+  -moz-transition: 0.35s linear;
+  -o-transition: 0.35s linear;
+}
+
+section.up {
+  margin-top: -100vh;
 }
 
 .container {
@@ -65,8 +74,6 @@ button {
   border: none;
   cursor: pointer;
   background-color: transparent;
-}
-button a {
   background-color: var(--color-white);
   padding: 1rem 1.5rem;
   color: var(--color-blue);
@@ -88,8 +95,6 @@ ul {
 li {
   list-style: none;
   cursor: pointer;
-}
-.insects a {
   padding: 0.9rem;
   flex-direction: column;
   justify-content: space-between;
@@ -99,7 +104,7 @@ li {
   border: 2px solid #fff;
 }
 
-.insects a:hover {
+.insects:hover {
   background-color: var(--color-white);
 }
 .insects h3 {
@@ -114,15 +119,15 @@ li {
   width: 85%;
   object-fit: contain;
 }
+/* playground styling */
 .header {
   justify-content: space-between;
-  padding: 1.25rem;
-  margin-top: 1rem;
+  padding: 2rem 1.25rem 1.25rem;
   height: 60px;
 }
 
 .header .side {
-  font: 700 1.25rem var(--font);
+  font: 700 1.25rem /1.75rem var(--font);
 }
 
 .playground {
@@ -167,5 +172,39 @@ li {
 
 .overlay-action.show {
   visibility: visible;
-  top: 30vh;
+  top: 25vh;
+}
+
+@media screen and (max-width: 500px) {
+  .overlay-action p {
+    font: 700 0.75rem / 1.25rem var(--font) !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: clamp(1.3rem, 10vw, 1.65rem);
+  }
+
+  .insects {
+    height: 125px;
+    width: 125px;
+  }
+  .insects h3 {
+    font-size: 0.8rem;
+  }
+  .header .side {
+    font-size: 1rem;
+  }
+  .header {
+    padding: 0.8rem 0.5rem 0.5rem;
+  }
+  .playground img {
+    height: 75px;
+    width: 75px;
+  }
+  .overlay-action p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 }
