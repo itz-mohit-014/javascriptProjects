@@ -44,6 +44,7 @@ Welcome to my Web Development Projects Repository! Here, I am mastering HTML, CS
 38. [Random Image Gallary](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day39_randomImageShowing)
 39. [Testimonial Box Switcher](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day40_testimonialBoxSwitcher)
 40. [To-Do App](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day41_todoListApp)
+41. [Insect Catch Game](https://itz-mohit-014.github.io/javascriptProjects/50days50projects/day42_insectCatchGame)
 
 Feel free to explore the live projects to see how they look after completion. Hope you find this repository helpful!
 
